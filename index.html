@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Budget App</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💰  BUDGET APP</h1>
+
+<label>Daily Allowance (₱)</label>
+<input type="number" id="allowance" placeholder="Enter your allowance">
+
+<label>Expenses (₱)</label>
+<input type="number" id="expenses" placeholder="Enter your expenses">
+
+<button onclick="checkBudget()">CHECK</button>
+
+<p id="result"></p>
+
+</div>
+
+
+<script>
+
+function checkBudget(){
+
+let allowance = document.getElementById("allowance").value;
+let expenses = document.getElementById("expenses").value;
+
+allowance = Number(allowance);
+expenses = Number(expenses);
+
+let remaining = allowance - expenses;
+
+let result = document.getElementById("result");
+
+if(allowance === 0 && expenses === 0){
+result.innerHTML = "Please enter your allowance and expenses.";
+result.style.color = "gray";
+return;
+}
+
+if(remaining > 0){
+result.innerHTML = "✅ Abaw kabalo mag budget";
+}
+
+else if(remaining === 0){
+result.innerHTML = "⚠️ Ubos na eh.";
+}
+
+else{
+result.innerHTML = "❌ Gastadora";
+}
+
+}
+
+</script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("Service Worker Registered"));
+}
+  </Script>
+</body>
+</html>
